@@ -94,7 +94,7 @@ public class ModeloReservasAulas {
 	 * Obtiene todos los profesores registrados. Llama al método getProfesores de Profesores
 	 * @return todos los profesores guardados
 	 */
-	public Profesor[] getProfesores() {
+	public List<Profesor> getProfesores() {
 		return profesores.getProfesores();
 	}
 
@@ -110,7 +110,7 @@ public class ModeloReservasAulas {
 	 * Obtiene la salida de todos los profesores registrados. Llama al método representar de Profesores
 	 * @return un array con la representación de cada profesor en forma de cadena
 	 */
-	public String[] representarProfesores() {
+	public List<String> representarProfesores() {
 		return profesores.representar();
 	}
 

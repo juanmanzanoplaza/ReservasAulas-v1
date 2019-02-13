@@ -1,5 +1,8 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
@@ -8,21 +11,18 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
  * Clase que guarda y define las operaciones que se pueden realizar sobre un conjunto de profesores
  * @see Profesor
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public class Profesores {
 
-	private static final int MAX_PROFESORES = 100;
-	private int numProfesores;
-	private Profesor[] coleccionProfesores;
+	private List<Profesor> coleccionProfesores;
 
 	/**
-	 * Constructor por defecto. Inicializa el número de profesores a cero
+	 * Constructor por defecto. Inicializa la colección de profesores.
 	 */
 	public Profesores() {
-		this.numProfesores = 0;
-		coleccionProfesores = new Profesor[MAX_PROFESORES];
+		coleccionProfesores = new ArrayList<Profesor>();
 	}
 
 	/**
@@ -49,10 +49,10 @@ public class Profesores {
 	 * @param profesores la colección de profesores a copiar
 	 * @return una copia de la colección
 	 */
-	private Profesor[] copiaProfundaProfesores(Profesor[] profesores) {
-		Profesor[] copia = new Profesor[MAX_PROFESORES];
-		for(int i = 0; i<copia.length && profesores[i]!=null; i++)
-			copia[i] = new Profesor(profesores[i]);
+	private List<Profesor> copiaProfundaProfesores(List<Profesor> profesores) {
+		List<Profesor> copia = new ArrayList<Profesor>();
+		for(Profesor p: profesores)
+			copia.add(new Profesor(p));
 		return copia;
 	}
 
@@ -60,7 +60,7 @@ public class Profesores {
 	 * Obtiene todos los profesores de la colección actual. Realiza una copia para evitar aliasing
 	 * @return una copia de la colección
 	 */
-	public Profesor[] getProfesores() {
+	public List<Profesor> getProfesores() {
 		return copiaProfundaProfesores(this.coleccionProfesores);
 	}
 
@@ -69,7 +69,7 @@ public class Profesores {
 	 * @return el número de profesores
 	 */
 	public int getNumProfesores() {
-		return numProfesores;
+		return this.coleccionProfesores.size();
 	}
 
 	/**
@@ -81,52 +81,9 @@ public class Profesores {
 	public void insertar(Profesor profesor) throws OperationNotSupportedException, IllegalArgumentException {
 		if(profesor==null)
 			throw new IllegalArgumentException("No se puede insertar un profesor nulo.");
-		int indice = buscarIndiceProfesor(profesor);
-		if(indiceNoSuperaTamano(indice))
+		if(this.coleccionProfesores.contains(profesor))
 			throw new OperationNotSupportedException("El profesor ya existe.");
-		if(indiceNoSuperaCantidad(indice)) {
-			coleccionProfesores[indice] = profesor;
-			numProfesores++;
-		} else
-			throw new OperationNotSupportedException("Se ha alcanzado el máximo de profesores que se pueden guardar.");
-	}
-
-	/**
-	 * Busca el índice en la colección de un profesor indicado
-	 * @param profesor el profesor cuyo índice queremos buscar
-	 * @return el índice del profesor
-	 */
-	private int buscarIndiceProfesor(Profesor profesor) {
-		for(int i = 0; i < coleccionProfesores.length; i++) {
-			if(coleccionProfesores[i]!=null) {
-				if(coleccionProfesores[i].equals(profesor))
-					return i;
-			} else
-				return i;
-		}
-		return MAX_PROFESORES;
-	}
-
-	/**
-	 * Comprueba que el índice no supera el número de profesores existentes
-	 * @param indice el índice a comprobar
-	 * @return True si no supera el tamaño, False si lo supera
-	 */
-	private boolean indiceNoSuperaTamano(int indice) {
-		if(indice<numProfesores)
-			return true;
-		return false;
-	}
-
-	/**
-	 * Comprueba que el índice no supera la cantidad máxima que se puede guardar
-	 * @param indice el índice a comprobar
-	 * @return True si no supera la capacidad, False si la supera
-	 */
-	private boolean indiceNoSuperaCantidad(int indice) {
-		if(indice<MAX_PROFESORES)
-			return true;
-		return false;
+		coleccionProfesores.add(profesor);
 	}
 
 	/**
@@ -137,10 +94,9 @@ public class Profesores {
 	public Profesor buscar(Profesor profesor) {
 		if(profesor==null)
 			return null;
-		int indice = buscarIndiceProfesor(profesor);
-		if(indiceNoSuperaTamano(indice))
-			return coleccionProfesores[indice];
-		return null;
+		if(this.coleccionProfesores.indexOf(profesor) == -1)
+			return null;
+		return this.coleccionProfesores.get(this.coleccionProfesores.indexOf(profesor));
 	}
 
 	/**
@@ -152,33 +108,18 @@ public class Profesores {
 	public void borrar(Profesor profesor) throws OperationNotSupportedException, IllegalArgumentException {
 		if(profesor==null)
 			throw new IllegalArgumentException("No se puede borrar un profesor nulo.");
-		int indice = buscarIndiceProfesor(profesor);
-		if(indiceNoSuperaTamano(indice)) {
-			coleccionProfesores[indice] = null;
-			desplazarUnaPosicionHaciaIzquierda(indice);
-			numProfesores--;
-		} else
+		if(!this.coleccionProfesores.remove(profesor))
 			throw new OperationNotSupportedException("El profesor a borrar no existe.");
-	}
-
-	/**
-	 * Desplaza los profesores a la posición anterior desde un índice dado
-	 * @param indice desde donde hay que mover los profesores
-	 */
-	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
-		for(int i = indice; i<coleccionProfesores.length && coleccionProfesores[i+1]!=null; i++)
-			coleccionProfesores[i] = coleccionProfesores[i+1];
-		coleccionProfesores[numProfesores-1] = null;
 	}
 
 	/**
 	 * Obtiene las salidas de todos los profesores de la colección
 	 * @return la salida de los profesores
 	 */
-	public String[] representar() {
-		String[] representar = new String[numProfesores];
-		for(int i = 0; i < representar.length; i++)
-			representar[i] = coleccionProfesores[i].toString();
+	public List<String> representar() {
+		List<String> representar = new ArrayList<String>();
+		for(Profesor p : this.coleccionProfesores)
+			representar.add(p.toString());
 		return representar;
 	}
 

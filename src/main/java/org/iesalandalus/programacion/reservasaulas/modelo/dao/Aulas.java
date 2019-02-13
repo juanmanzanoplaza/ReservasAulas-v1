@@ -50,9 +50,9 @@ public class Aulas {
 	 * @param coleccionAulas la colección de aulas a copiar
 	 * @return una copia de la colección
 	 */
-	private List<Aula> copiaProfundaAulas(List<Aula> coleccionAulas) {
+	private List<Aula> copiaProfundaAulas(List<Aula> aulas) {
 		List<Aula> copia = new ArrayList<Aula>();
-		for(Aula a: coleccionAulas)
+		for(Aula a: aulas)
 			copia.add(new Aula(a));
 		return copia;
 	}
