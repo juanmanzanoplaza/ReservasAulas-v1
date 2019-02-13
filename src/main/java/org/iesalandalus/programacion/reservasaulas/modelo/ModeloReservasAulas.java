@@ -145,7 +145,7 @@ public class ModeloReservasAulas {
 	 * Obtiene todas las reservas realizadas. Llama al método getReservas de Reservas
 	 * @return todas las reservas realizadas
 	 */
-	public Reserva[] getReservas() {
+	public List<Reserva> getReservas() {
 		return reservas.getReservas();
 	}
 
@@ -161,7 +161,7 @@ public class ModeloReservasAulas {
 	 * Obtiene la salida de todas las reservas realizadas. Llama al método representar de Reservas
 	 * @return un array con la representación de cada reserva en forma de cadena
 	 */
-	public String[] representarReservas() {
+	public List<String> representarReservas() {
 		return reservas.representar();
 	}
 
@@ -197,7 +197,7 @@ public class ModeloReservasAulas {
 	 * @param aula el aula sobre la que están hechas las reservas
 	 * @return un array con todas las reservas sobre el aula indicada
 	 */
-	public Reserva[] getReservasAula(Aula aula) throws IllegalArgumentException {
+	public List<Reserva> getReservasAula(Aula aula) throws IllegalArgumentException {
 		return reservas.getReservasAula(aula);
 	}
 
@@ -206,7 +206,7 @@ public class ModeloReservasAulas {
 	 * @param profesor el profesor a nombre del que están hechas las reservas
 	 * @return un array con todas las reservas a nombre del profesor indicado
 	 */
-	public Reserva[] getReservasProfesor(Profesor profesor) throws IllegalArgumentException {
+	public List<Reserva> getReservasProfesor(Profesor profesor) throws IllegalArgumentException {
 		return reservas.getReservasProfesor(profesor);
 	}
 
@@ -215,7 +215,7 @@ public class ModeloReservasAulas {
 	 * @param permanencia la fecha de las reservas
 	 * @return un array con todas las reservas de ese día y tramo
 	 */
-	public Reserva[] getReservasPermanencia(Permanencia permanencia) throws IllegalArgumentException {
+	public List<Reserva> getReservasPermanencia(Permanencia permanencia) throws IllegalArgumentException {
 		return reservas.getReservasPermanencia(permanencia);
 	}
 

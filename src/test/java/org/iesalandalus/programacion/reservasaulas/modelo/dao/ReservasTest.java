@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservasaulas.modelo.dao;
-/*
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -17,20 +17,20 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Tramo;
 import org.junit.Test;
-*/
+
 public class ReservasTest {
-/*	
-	private static final String NOMBRE_PROFESOR1 = "JosÃ© RamÃ³n";
-	private static final String NOMBRE_PROFESOR2 = "AndrÃ©s";
+	
+	private static final String NOMBRE_PROFESOR1 = "José Ramón";
+	private static final String NOMBRE_PROFESOR2 = "Andrés";
 	private static final String CORREO = "a@b.cc";
-	private static final String NOMBRE_AULA1 = "SalÃ³n de actos 1";
-	private static final String NOMBRE_AULA2 = "SalÃ³n de actos 2";
-	private static final String NOMBRE_AULA3 = "SalÃ³n de actos 3";
+	private static final String NOMBRE_AULA1 = "Salón de actos 1";
+	private static final String NOMBRE_AULA2 = "Salón de actos 2";
+	private static final String NOMBRE_AULA3 = "Salón de actos 3";
 	private static final LocalDate DIA1 = LocalDate.of(2018, 12, 1);
 	private static final LocalDate DIA2 = LocalDate.of(2018, 12, 31);
 	private static final LocalDate DIA3 = LocalDate.of(2018, 12, 22);
-	private static final String ERROR_EXCEPCION = "DeberÃ­a haber saltado la excepciÃ³n.";
-	private static final String ERROR_NO_EXCEPCION = "No deberÃ­a haber saltado la excepciÃ³n.";
+	private static final String ERROR_EXCEPCION = "Debería haber saltado la excepción.";
+	private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";
 	
 	private final Profesor profesor1 = new Profesor(NOMBRE_PROFESOR1, CORREO);
 	private final Profesor profesor2 = new Profesor(NOMBRE_PROFESOR2, CORREO);
@@ -348,5 +348,4 @@ public class ReservasTest {
 			assertEquals("No se puede consultar la disponibilidad de una permanencia nula.", e.getMessage());
 		}
 	}
-*/
 }
