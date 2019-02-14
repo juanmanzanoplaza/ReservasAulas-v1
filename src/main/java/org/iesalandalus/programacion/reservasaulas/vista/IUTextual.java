@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.reservasaulas.vista;
 
+import java.util.List;
+
 import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.modelo.ModeloReservasAulas;
@@ -9,11 +11,11 @@ import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.modelo.dominio.Reserva;
 
 /**
- * 
+ *
  * Clase encargada de tratar las excepciones y llamar a las distintas funciones del modelo ModeloReservasAulas
  * @see ModeloReservasAulas
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public class IUTextual {
@@ -99,11 +101,11 @@ public class IUTextual {
 	 */
 	public void listarAulas() {
 		Consola.mostrarCabecera("LISTAR AULAS");
-		String[] aulas = modelo.representarAulas();
-		if(aulas.length==0)
+		List<String> aulas = modelo.representarAulas();
+		if(aulas.size()==0)
 			System.out.println(ERROR + "No hay ningún aula guardada.");
-		for(int i = 0; i<aulas.length && aulas[i]!=null; i++)
-			System.out.println(aulas[i]);
+		for(String s : aulas)
+			System.out.println(s);
 	}
 
 	/**
@@ -151,11 +153,11 @@ public class IUTextual {
 	 */
 	public void listarProfesores() {
 		Consola.mostrarCabecera("LISTAR PROFESORES");
-		String[] profesores = modelo.representarProfesores();
-		if(profesores.length==0)
+		List<String> profesores = modelo.representarProfesores();
+		if(profesores.size()==0)
 			System.out.println(ERROR + "No hay ningún profesor guardado.");
-		for(int i = 0; i<profesores.length && profesores[i]!=null; i++)
-			System.out.println(profesores[i]);
+		for(String s : profesores)
+			System.out.println(s);
 	}
 
 	/**
@@ -236,11 +238,11 @@ public class IUTextual {
 	 */
 	public void listarReservas() {
 		Consola.mostrarCabecera("LISTAR RESERVAS");
-		String[] reservas = modelo.representarReservas();
-		if(reservas.length==0)
+		List<String> reservas = modelo.representarReservas();
+		if(reservas.size()==0)
 			System.out.println("No hay ninguna reserva hecha.");
-		for(int i = 0; i<reservas.length && reservas[i]!=null; i++)
-			System.out.println(reservas[i]);
+		for(String s : reservas)
+			System.out.println(s);
 	}
 
 	/**
@@ -254,12 +256,12 @@ public class IUTextual {
 			System.out.println(ERROR + "El aula introducida no existe.");
 			lecturaCorrecta = false;
 		}
-		Reserva[] reservas = modelo.getReservasAula(aula);
-		if(lecturaCorrecta && reservas[0] == null)
+		List<Reserva> reservas = modelo.getReservasAula(aula);
+		if(lecturaCorrecta && reservas.size()==0)
 			System.out.println("El aula indicada no está reservada.");
 		if(lecturaCorrecta) {
-			for(int i = 0; i<reservas.length && reservas[i]!=null; i++)
-				System.out.println(reservas[i]);
+			for(Reserva r : reservas)
+				System.out.println(r);
 		}
 	}
 
@@ -274,12 +276,12 @@ public class IUTextual {
 			System.out.println(ERROR + "El profesor introducido no existe.");
 			lecturaCorrecta = false;
 		}
-		Reserva[] reservas = modelo.getReservasProfesor(profesor);
-		if(lecturaCorrecta && reservas[0]==null)
+		List<Reserva> reservas = modelo.getReservasProfesor(profesor);
+		if(lecturaCorrecta && reservas.size()==0)
 			System.out.println("El profesor indicado no tiene ningún aula reservada.");
 		if(lecturaCorrecta) {
-			for(int i = 0; i<reservas.length && reservas[i]!=null; i++)
-				System.out.println(reservas[i]);
+			for(Reserva r : reservas)
+				System.out.println(r);
 		}
 	}
 
@@ -289,11 +291,11 @@ public class IUTextual {
 	public void listarReservasPermanencia() {
 		Consola.mostrarCabecera("LISTAR RESERVAS PERMANENCIA");
 		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		Reserva[] reservas = modelo.getReservasPermanencia(permanencia);
-		if(reservas[0]==null)
+		List<Reserva> reservas = modelo.getReservasPermanencia(permanencia);
+		if(reservas.size()==0)
 			System.out.println("En ese tramo no hay ningún aula reservada.");
-		for(int i = 0; i<reservas.length && reservas[i]!=null; i++)
-			System.out.println(reservas[i]);
+		for(Reserva r : reservas)
+			System.out.println(r);
 	}
 
 	/**

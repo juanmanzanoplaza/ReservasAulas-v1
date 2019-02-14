@@ -21,7 +21,7 @@ import org.iesalandalus.programacion.reservasaulas.vista.IUTextual;
  * @see Aulas
  * @see Reservas
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public class ModeloReservasAulas {

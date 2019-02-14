@@ -5,7 +5,7 @@ package org.iesalandalus.programacion.reservasaulas.vista;
  * Representa las distintas opciones que ofrece el menú de la aplicación.
  * @see IUTextual
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public enum Opcion {

@@ -14,7 +14,7 @@ import org.iesalandalus.programacion.utilidades.Entrada;
  * @see IUTextual
  * @see Opcion
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public class Consola {
@@ -57,7 +57,7 @@ public class Consola {
 	public static int elegirOpcion() {
 		int opcion;
 		do {
-			System.out.print("¿Qué opción desea elegir?:");
+			System.out.println("¿Qué opción desea elegir?");
 			opcion = Entrada.entero();
 		} while(!Opcion.esOrdinalValido(opcion));
 		return opcion;
@@ -87,7 +87,7 @@ public class Consola {
 	public static String leerNombreAula() {
 		String nombre;
 		do {
-			System.out.print("Introduzca el nombre del aula:");
+			System.out.println("Introduzca el nombre del aula.");
 			nombre = Entrada.cadena();
 		}while(nombre.equals(""));
 		return nombre;
@@ -102,9 +102,9 @@ public class Consola {
 		do {
 			try {
 				String nombre = leerNombreProfesor();
-				System.out.print("Introduzca el correo electrónico del profesor:");
+				System.out.println("Introduzca el correo electrónico del profesor.");
 				String correo = Entrada.cadena();
-				System.out.print("Introduzca el teléfono del profesor (Puede dejarse vacío):");
+				System.out.println("Introduzca el teléfono del profesor. (Puede dejarse vacío)");
 				String telefono = Entrada.cadena();
 				if(telefono.equals(""))
 					leido = new Profesor(nombre, correo);
@@ -125,7 +125,7 @@ public class Consola {
 	public static String leerNombreProfesor() {
 		String nombre;
 		do {
-			System.out.print("Introduzca el nombre del profesor:");
+			System.out.println("Introduzca el nombre del profesor.");
 			nombre = Entrada.cadena();
 		} while(nombre.equals(""));
 		return nombre;
@@ -140,7 +140,7 @@ public class Consola {
 	public static Tramo leerTramo() {
 		int opcion;
 		do {
-			System.out.print("¿Tramo de mañana(0) o de tarde(1)?:");
+			System.out.println("¿Tramo de mañana(0) o de tarde(1)?");
 			opcion = Entrada.entero();
 		} while(opcion<0 || opcion>Tramo.values().length);
 		return Tramo.values()[opcion];
@@ -154,7 +154,7 @@ public class Consola {
 	public static LocalDate leerDia() {
 		LocalDate leido = null;
 		do {
-			System.out.print("Introduzca una fecha en el formato dd/mm/aaaa: ");
+			System.out.println("Introduzca una fecha en el formato \"dd/mm/aaaa\".");
 			try {
 				leido = LocalDate.parse(Entrada.cadena(), FORMATO_DIA);
 			} catch (DateTimeParseException e) {

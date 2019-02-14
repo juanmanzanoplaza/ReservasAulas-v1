@@ -7,7 +7,7 @@ import org.iesalandalus.programacion.reservasaulas.vista.IUTextual;
  * Clase principal del programa. Se encarga de hacer la primera llamada y comenzar la ejecución.
  * @see IUTextual
  * @author Juan Antonio Manzano Plaza
- * @version 0
+ * @version 1
  *
  */
 public class MainApp {
