@@ -88,6 +88,10 @@ public class ModeloReservasAulas {
 	 */
 	public void borrarAula(Aula borrar) throws OperationNotSupportedException, IllegalArgumentException {
 		aulas.borrar(borrar);
+		//borrar reservas sobre ese aula
+		List<Reserva> reservasAula = reservas.getReservasAula(borrar);
+		for(Reserva r : reservasAula)
+			reservas.borrar(r);
 	}
 
 	/**
@@ -139,6 +143,10 @@ public class ModeloReservasAulas {
 	 */
 	public void borrarProfesor(Profesor borrar) throws OperationNotSupportedException, IllegalArgumentException {
 		profesores.borrar(borrar);
+		//borrar reservas a nombre de ese profesor
+		List<Reserva> reservasProfesor = reservas.getReservasProfesor(borrar);
+		for(Reserva r : reservasProfesor)
+			reservas.borrar(r);
 	}
 
 	/**
